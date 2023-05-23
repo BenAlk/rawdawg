@@ -22,7 +22,7 @@ export const Calendar = () => {
         const fetchUpdatedCalendars = async () => {
             try {
             const updatedCalendars = await axios.get(
-                `http://localhost:3001/calendar/${userID}`, {  headers: {authorization: cookies.access_token }}
+                `https://rawdawg.onrender.com/calendar/${userID}`, {  headers: {authorization: cookies.access_token }}
             )
             if (JSON.stringify(updatedCalendars.data.savedCalendars) !== JSON.stringify(calendarArray)) {
                 setCalendarArray(updatedCalendars.data.savedCalendars)

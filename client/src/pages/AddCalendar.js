@@ -20,7 +20,7 @@ export const AddCalendar = () => {
     const getDogList = async () => {
         try {
             const response = await axios.get(
-                `http://localhost:3001/config/pack/${userID}`, {  headers: {authorization: cookies.access_token }}
+                `https://rawdawg.onrender.com/config/pack/${userID}`, {  headers: {authorization: cookies.access_token }}
             )
             setDogList(response.data.dogs)
         } catch(err) {
@@ -92,7 +92,7 @@ export const AddCalendar = () => {
     useEffect(() => {
         const postNewCalendar = async () => {
             try{
-                await axios.post("http://localhost:3001/calendar", newCalendar, {  headers: {authorization: cookies.access_token }})
+                await axios.post("https://rawdawg.onrender.com/calendar", newCalendar, {  headers: {authorization: cookies.access_token }})
                 console.log(newCalendar)
                 navigate("/Calendar")
             }   catch(err){

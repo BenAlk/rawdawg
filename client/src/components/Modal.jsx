@@ -18,13 +18,13 @@ export const Modal = (props) => {
 
     const handleConfirm = () => {
         if (props.type.itemType === "dog"){
-            remove(`http://localhost:3001/config/pack/${props.type.item.userOwner}/dog/${props.type.item._id}`)
+            remove(`https://rawdawg.onrender.com/config/pack/${props.type.item.userOwner}/dog/${props.type.item._id}`)
             props.setRefresh(true)
         } else if (props.type.itemType === "food item") {
-            remove(`http://localhost:3001/food/${props.type.item._id}/user/${props.type.userID}`)
+            remove(`https://rawdawg.onrender.com/food/${props.type.item._id}/user/${props.type.userID}`)
             props.setRefresh(true)
         } else if (props.type.itemType === "calendar") {
-            remove(`http://localhost:3001/calendar/${props.type.item._id}`)
+            remove(`https://rawdawg.onrender.com/calendar/${props.type.item._id}`)
             props.setRefresh(true)
         } else 
         console.log("ERRORS!!!!")

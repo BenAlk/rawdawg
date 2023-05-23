@@ -16,8 +16,8 @@ export const OrderSheet = () => {
         const fetchCalendar = async () => {
         try {
             const [savedCalendar, foodList] = await Promise.all([
-            axios.get(`http://localhost:3001/calendar/savedcalendars/${calendarId.id}`, {  headers: {authorization: cookies.access_token }}),
-            axios.get(`http://localhost:3001/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
+            axios.get(`https://rawdawg.onrender.com/calendar/savedcalendars/${calendarId.id}`, {  headers: {authorization: cookies.access_token }}),
+            axios.get(`https://rawdawg.onrender.com/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
             ]);
             setCalendar(savedCalendar.data.calendar);
             setFoods(foodList.data.food);

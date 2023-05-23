@@ -18,8 +18,8 @@ export const EditCalendar = () => {
         const fetchCalendar = async () => {
             try {
                 const [savedCalendar, foodList] = await Promise.all([
-                axios.get(`http://localhost:3001/calendar/savedcalendars/${calendarId.id}`, {  headers: {authorization: cookies.access_token }}),
-                axios.get(`http://localhost:3001/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
+                axios.get(`https://rawdawg.onrender.com/calendar/savedcalendars/${calendarId.id}`, {  headers: {authorization: cookies.access_token }}),
+                axios.get(`https://rawdawg.onrender.com/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
 
             ]) 
                 setCalendar(savedCalendar.data.calendar)
@@ -60,7 +60,7 @@ export const EditCalendar = () => {
     const handleUpdateCalendar = async () => {
         try {
             
-                const response = await axios.put(`http://localhost:3001/calendar/savecalendar/${calendarId.id}`, calendar, {  headers: {authorization: cookies.access_token }})
+                const response = await axios.put(`https://rawdawg.onrender.com/calendar/savecalendar/${calendarId.id}`, calendar, {  headers: {authorization: cookies.access_token }})
                 console.log(response)
                 alert("Changes have been saved successfully, any errors will be calculated upon submission.")
             }
@@ -95,7 +95,7 @@ export const EditCalendar = () => {
             } else
             {
                 calendar.completed = true
-                const response = await axios.put(`http://localhost:3001/calendar/savecalendar/${calendarId.id}`, calendar, {  headers: {authorization: cookies.access_token }})
+                const response = await axios.put(`https://rawdawg.onrender.com/calendar/savecalendar/${calendarId.id}`, calendar, {  headers: {authorization: cookies.access_token }})
                 console.log(response)
                 navigate(`/Calendar/OrderSheet/${calendarId.id}`)
             }

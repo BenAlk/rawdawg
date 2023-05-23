@@ -24,7 +24,7 @@ export const AddDog = () => {
     const onSubmit = async (event) => {
         event.preventDefault()
         try{
-            await axios.post("http://localhost:3001/config", newDog, {  headers: {authorization: cookies.access_token }})
+            await axios.post("https://rawdawg.onrender.com/config", newDog, {  headers: {authorization: cookies.access_token }})
             alert(`${newDog.name} has been added to your pack.`)
             navigate("/Config")
         }   catch(err){

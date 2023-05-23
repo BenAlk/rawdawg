@@ -23,7 +23,7 @@ export const AddFood = () => {
     const onSubmit = async (event) => {
         event.preventDefault()
         try{
-            const food = await axios.post("http://localhost:3001/food", newFood, {  headers: {authorization: cookies.access_token }})
+            const food = await axios.post("https://rawdawg.onrender.com/food", newFood, {  headers: {authorization: cookies.access_token }})
             if(food.data.message){
                 alert(food.data.message)
             } else {

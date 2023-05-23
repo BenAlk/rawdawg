@@ -19,7 +19,7 @@ export const EditFood = () => {
         const fetchFood = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3001/food/edit/${foodId.id}`, {  headers: {authorization: cookies.access_token }}
+                    `https://rawdawg.onrender.com/food/edit/${foodId.id}`, {  headers: {authorization: cookies.access_token }}
                 )
                 setFood(response.data.food)
             } catch(err) {
@@ -38,7 +38,7 @@ export const EditFood = () => {
     const onSubmit = async (event) => {
         event.preventDefault()
         try{
-            await axios.put(`http://localhost:3001/food/edit/${food._id}`, food, {  headers: {authorization: cookies.access_token }})
+            await axios.put(`https://rawdawg.onrender.com/food/edit/${food._id}`, food, {  headers: {authorization: cookies.access_token }})
             alert(`${food.name} has been amended.`)
             navigate("/Config")
         }   catch(err){

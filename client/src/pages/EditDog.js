@@ -19,7 +19,7 @@ export const EditDog = () => {
         const fetchDog = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3001/config/pack/dog/${dogId.id}`, {  headers: {authorization: cookies.access_token }}
+                    `https://rawdawg.onrender.com/config/pack/dog/${dogId.id}`, {  headers: {authorization: cookies.access_token }}
                 )
                 setDog(response.data.dog)
             } catch(err) {
@@ -38,7 +38,7 @@ export const EditDog = () => {
     const onSubmit = async (event) => {
         event.preventDefault()
         try{
-            await axios.put(`http://localhost:3001/config/pack/${userID}/dog/${dog._id}`, dog, {  headers: {authorization: cookies.access_token }})
+            await axios.put(`https://rawdawg.onrender.com/config/pack/${userID}/dog/${dog._id}`, dog, {  headers: {authorization: cookies.access_token }})
             alert(`${dog.name} has been amended.`)
             navigate("/Config")
         }   catch(err){

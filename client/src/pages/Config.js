@@ -20,8 +20,8 @@ export const Config = () => {
         const fetchDogsAndFood = async () => {
             try {
                 const [dogList, foodList] = await Promise.all([
-                    axios.get(`http://localhost:3001/config/pack/${userID}`, {  headers: {authorization: cookies.access_token }}),
-                    axios.get(`http://localhost:3001/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
+                    axios.get(`https://rawdawg.onrender.com/config/pack/${userID}`, {  headers: {authorization: cookies.access_token }}),
+                    axios.get(`https://rawdawg.onrender.com/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
                 ])
                 setDogs(dogList.data.dogs)
                 setFood(foodList.data.food)

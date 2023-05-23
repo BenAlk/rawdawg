@@ -24,7 +24,7 @@ export const Header = () => {
     useEffect(() => {
         const checkUser = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:3001/auth/userCheck/${window.localStorage.getItem('userID')}`, {  headers: {authorization: cookies.access_token }})
+                const { data } = await axios.get(`https://rawdawg.onrender.com/auth/userCheck/${window.localStorage.getItem('userID')}`, {  headers: {authorization: cookies.access_token }})
                 setUser(data)
             } catch (err) {
                 console.log(err)
