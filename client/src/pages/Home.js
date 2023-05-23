@@ -13,6 +13,8 @@ export const Home = () => {
     const [defrost, setDefrost] = useState(false)
     const [cookies ,] = useCookies(["access_token"])
 
+    console.log("USERID" + userID)
+
     useEffect(() => {
         const fetchCalendar = async () => {
             try {
