@@ -6,28 +6,12 @@ import { useCookies } from 'react-cookie'
 
 export const Home = () => {
 
-    const [user, setUser] = useState(null)
     const [calendar, setCalendar] = useState([])
     const [foods, setFoods] = useState([])
     const userID = useGetUserID()
     const [loaded, setLoaded] = useState(false)
     const [defrost, setDefrost] = useState(false)
     const [cookies ,] = useCookies(["access_token"])
-    
-    useEffect(() => {
-        const checkUser = async () => {
-            try {
-                const { data } = await axios.get(`https://rawdawg.onrender.com/auth/userCheck/${window.localStorage.getItem('userID')}`, {  headers: {authorization: cookies.access_token }})
-                setUser(data)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        if (cookies.access_token && !user) {
-            checkUser()
-        }
-    }, [cookies.access_token, user]) 
-
 
     useEffect(() => {
         const fetchCalendar = async () => {
@@ -177,7 +161,7 @@ export const Home = () => {
 
     return (
         <>
-    {user && loaded ? displayMenu() : !user && loaded ? <div>Click Login to begin</div> : <div>loading...</div>}
+    {userID && loaded ? displayMenu() : !userID && loaded ? <div>Click Login to begin</div> : <div>loading...</div>}
         </>
     )
 }
