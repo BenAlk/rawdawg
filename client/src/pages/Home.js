@@ -13,30 +13,41 @@ export const Home = () => {
     const [loaded, setLoaded] = useState(false)
     const [defrost, setDefrost] = useState(false)
     const [cookies ,] = useCookies(["access_token"])
+    
+    useEffect(() => {
+        const checkUser = async () => {
+            try {
+                const { data } = await axios.get(`https://rawdawg.onrender.com/auth/userCheck/${window.localStorage.getItem('userID')}`, {  headers: {authorization: cookies.access_token }})
+                setUser(data)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        if (cookies.access_token && !user) {
+            checkUser()
+        }
+    }, [cookies.access_token, user]) 
+
 
     useEffect(() => {
         const fetchCalendar = async () => {
             try {
-                const [savedCalendar, foodList, checkUser] = await Promise.all([
+                const [savedCalendar, foodList] = await Promise.all([
                 axios.get(`https://rawdawg.onrender.com/calendar/active-calendar/${userID}`, {  headers: {authorization: cookies.access_token }}),
-                axios.get(`https://rawdawg.onrender.com/Food/${userID}`, {  headers: {authorization: cookies.access_token }}),
-                axios.get(`https://rawdawg.onrender.com/auth/userCheck/${window.localStorage.getItem('userID')}`, {  headers: {authorization: cookies.access_token }})
+                axios.get(`https://rawdawg.onrender.com/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
+
             ])
                 if(savedCalendar.data.completedCalendar) {
                 setCalendar(savedCalendar.data.completedCalendar)
                 setFoods(foodList.data.food)
-                
-            }
+                }
                 setLoaded(true)
-                setUser(checkUser)
             } catch (err) {
                 console.log(err)
             }
         }
         fetchCalendar()
-        console.log(user)
-        console.log(loaded)
-    }, [loaded, user, userID, cookies.access_token])
+    }, [userID, cookies.access_token])
 
     useEffect(() => {
         console.log(calendar.length)
