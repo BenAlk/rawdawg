@@ -36,7 +36,7 @@ export const Home = () => {
         fetchCalendar()
         console.log(user)
         console.log(loaded)
-    }, [user, userID, cookies.access_token])
+    }, [loaded, user, userID, cookies.access_token])
 
     useEffect(() => {
         console.log(calendar.length)
