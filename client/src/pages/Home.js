@@ -31,7 +31,7 @@ export const Home = () => {
             }
         }
         fetchCalendar()
-    }, [userID, cookies.access_token])
+    }, [])
 
     useEffect(() => {
         console.log(calendar.length)
