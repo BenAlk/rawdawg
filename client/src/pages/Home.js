@@ -176,7 +176,7 @@ export const Home = () => {
 
     return (
         <>
-        {user && loaded ? (calendar.length > 0 ? ( displayMenu() ) : ( <div>Calendar data is empty</div> ) ) : !user && loaded ? ( <div>Click Login to begin</div> ) : ( <div>Loading...</div> )}
+        {user && loaded ? (calendar && calendar.length > 0 ? ( displayMenu() ) : ( <div>Calendar data is empty</div> ) ) : !user && loaded ? ( <div>Click Login to begin</div> ) : ( <div>Loading...</div> )}
         </>
     )
 }
