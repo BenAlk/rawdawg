@@ -161,7 +161,7 @@ export const Home = () => {
 
     return (
         <>
-    {userID && loaded ? displayMenu() : !userID && loaded ? <div>Click Login to begin</div> : <div>loading...</div>}
+            {!userID ? <div> loading ...</div> : userID && loaded ? displayMenu() : <div>Click Login to begin.</div>}
         </>
     )
 }
