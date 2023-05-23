@@ -75,105 +75,103 @@ export const Home = () => {
     }, [calendar])
 
     const displayMenu = () => {
-        if(calendar.dogs) {
-            const today = new Date().toLocaleDateString()
-            console.log(today)
-            const tomorrowDateString = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toLocaleDateString();
-            console.log(tomorrowDateString)
+        const today = new Date().toLocaleDateString()
+        console.log(today)
+        const tomorrowDateString = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toLocaleDateString();
+        console.log(tomorrowDateString)
 
-            const filteredDogs = calendar.dogs.map((dog) => {
-                const filteredDates = dog.dates.filter((date) => {
-                    const dateString = new Date(date.date).toLocaleDateString()
-                    return dateString === today || dateString === tomorrowDateString;
-                });
-
-                return { ...dog, dates: filteredDates };
+        const filteredDogs = calendar.dogs.map((dog) => {
+            const filteredDates = dog.dates.filter((date) => {
+                const dateString = new Date(date.date).toLocaleDateString()
+                return dateString === today || dateString === tomorrowDateString;
             });
-            console.log("filteredDogs")
-            console.log(filteredDogs)
 
-            return (
-                <div className="container">
-                    <div className="calendar-pack-container">
-                        {filteredDogs.map((dog) => (
-                        <div className="calendar-dog-container" key={dog._id}>
-                            <h2>{dog.name}'s Menu</h2>
-                            {dog.dates.map((date,index) => (
-                            <>
-                                {defrost && index === 1 && <div className="calendar-edit-container red expired"> DEFROST IS NEEDED!</div>}
-                                <div className="calendar-edit-container" key={date._id}>
-                                    <h3>{new Date(date.date).toLocaleDateString() === today ? "Todays Meal" : "Tomorrows Meal"}</h3>
-                                    <div className="date-menu-container">
-                                        <select
-                                            name={`foodId1-${dog._id}-${date._id}`}
-                                            value={date.menuItems.foodId1}
-                                            readOnly
-                                            disabled
-                                            style={{ color: 'black', background: 'white', cursor: 'not-allowed' }}
-                                        >
-                                            <option value={userID} disabled>
-                                            - Choose your menu item
-                                            </option>
-                                            {foods.map((food) => (
-                                            <option key={food._id} value={food._id}>
-                                                {food.name}
-                                            </option>
-                                            ))}
-                                        </select>
-                                        <input
-                                            name={`weightId1-${dog._id}-${date._id}`}
-                                            className="menu-item-weight"
-                                            type="number"
-                                            placeholder="weight(g)"
-                                            value={date.menuItems.weight1 > 0 ? date.menuItems.weight1 : 0}
-                                            readOnly
-                                        />
-                                        <p>(g)</p>
-                                    </div>
-                                    <div className="date-menu-container">
-                                        <select
-                                            name={`foodId2-${dog._id}-${date._id}`}
-                                            value={date.menuItems.foodId2}
-                                            readOnly
-                                            disabled
-                                            style={{ color: 'black', background: 'white', cursor: 'not-allowed' }}
-                                        >
-                                            <option value={userID} disabled>
-                                            - Choose your menu item
-                                            </option>
-                                            {foods.map((food) => (
-                                            <option key={food._id} value={food._id}>
-                                                {food.name}
-                                            </option>
-                                            ))}
-                                        </select>
-                                        <input
-                                            name={`weightId2-${dog._id}-${date._id}`}
-                                            className="menu-item-weight"
-                                            type="number"
-                                            placeholder="weight(g)"
-                                            value={date.menuItems.weight2 > 0 ? date.menuItems.weight2 : 0}
-                                            readOnly
-                                        />
-                                        <p>(g)</p>
-                                    </div>                     
+            return { ...dog, dates: filteredDates };
+        });
+        console.log("filteredDogs")
+        console.log(filteredDogs)
+
+        return (
+            <div className="container">
+                <div className="calendar-pack-container">
+                    {filteredDogs.map((dog) => (
+                    <div className="calendar-dog-container" key={dog._id}>
+                        <h2>{dog.name}'s Menu</h2>
+                        {dog.dates.map((date,index) => (
+                        <>
+                            {defrost && index === 1 && <div className="calendar-edit-container red expired"> DEFROST IS NEEDED!</div>}
+                            <div className="calendar-edit-container" key={date._id}>
+                                <h3>{new Date(date.date).toLocaleDateString() === today ? "Todays Meal" : "Tomorrows Meal"}</h3>
+                                <div className="date-menu-container">
+                                    <select
+                                        name={`foodId1-${dog._id}-${date._id}`}
+                                        value={date.menuItems.foodId1}
+                                        readOnly
+                                        disabled
+                                        style={{ color: 'black', background: 'white', cursor: 'not-allowed' }}
+                                    >
+                                        <option value={userID} disabled>
+                                        - Choose your menu item
+                                        </option>
+                                        {foods.map((food) => (
+                                        <option key={food._id} value={food._id}>
+                                            {food.name}
+                                        </option>
+                                        ))}
+                                    </select>
+                                    <input
+                                        name={`weightId1-${dog._id}-${date._id}`}
+                                        className="menu-item-weight"
+                                        type="number"
+                                        placeholder="weight(g)"
+                                        value={date.menuItems.weight1 > 0 ? date.menuItems.weight1 : 0}
+                                        readOnly
+                                    />
+                                    <p>(g)</p>
                                 </div>
-                            </>
-                            ))}
-                        </div>
+                                <div className="date-menu-container">
+                                    <select
+                                        name={`foodId2-${dog._id}-${date._id}`}
+                                        value={date.menuItems.foodId2}
+                                        readOnly
+                                        disabled
+                                        style={{ color: 'black', background: 'white', cursor: 'not-allowed' }}
+                                    >
+                                        <option value={userID} disabled>
+                                        - Choose your menu item
+                                        </option>
+                                        {foods.map((food) => (
+                                        <option key={food._id} value={food._id}>
+                                            {food.name}
+                                        </option>
+                                        ))}
+                                    </select>
+                                    <input
+                                        name={`weightId2-${dog._id}-${date._id}`}
+                                        className="menu-item-weight"
+                                        type="number"
+                                        placeholder="weight(g)"
+                                        value={date.menuItems.weight2 > 0 ? date.menuItems.weight2 : 0}
+                                        readOnly
+                                    />
+                                    <p>(g)</p>
+                                </div>                     
+                            </div>
+                        </>
                         ))}
                     </div>
-                    <Link
-                        to={`Calendar/Edit/${calendar._id}`}
-                        
-                    >
-                        <div className="form-button" title="View Calendar" >
-                            View Full Calendar
-                        </div>
-                    </Link>
+                    ))}
                 </div>
-                )
-            }
+                <Link
+                    to={`Calendar/Edit/${calendar._id}`}
+                    
+                >
+                    <div className="form-button" title="View Calendar" >
+                        View Full Calendar
+                    </div>
+                </Link>
+            </div>
+        )
     }
 
     return (
