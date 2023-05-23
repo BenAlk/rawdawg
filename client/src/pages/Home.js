@@ -12,13 +12,13 @@ export const Home = () => {
     const [loaded, setLoaded] = useState(false)
     const [defrost, setDefrost] = useState(false)
     const [cookies ,] = useCookies(["access_token"])
-
+    
     useEffect(() => {
         const fetchCalendar = async () => {
             try {
                 const [savedCalendar, foodList] = await Promise.all([
-                axios.get(`https://rawdawg.onrender.com/calendar/active-calendar/${userID}`, {  headers: {authorization: cookies.access_token }}),
-                axios.get(`https://rawdawg.onrender.com/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
+                axios.get(`http://localhost:3001/calendar/active-calendar/${userID}`, {  headers: {authorization: cookies.access_token }}),
+                axios.get(`http://localhost:3001/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
 
             ])
                 if(savedCalendar.data.completedCalendar) {
@@ -31,7 +31,7 @@ export const Home = () => {
             }
         }
         fetchCalendar()
-    }, [])
+    }, [userID, cookies.access_token])
 
     useEffect(() => {
         console.log(calendar.length)
@@ -56,6 +56,9 @@ export const Home = () => {
     }, [calendar])
 
     const displayMenu = () => {
+        if(!calendar.dogs) {
+            return <div>you have no data</div>
+        } else {
         const today = new Date().toLocaleDateString()
         console.log(today)
         const tomorrowDateString = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toLocaleDateString();
@@ -71,7 +74,7 @@ export const Home = () => {
         });
         console.log("filteredDogs")
         console.log(filteredDogs)
-        
+
         return (
             <div className="container">
                 <div className="calendar-pack-container">
@@ -154,11 +157,11 @@ export const Home = () => {
             </div>
             )
         }
-    
+    }
 
     return (
         <>
-            {!userID ? <div> Click Login to begin.</div> : userID && loaded ?  displayMenu() : <div>loading...</div> }
+    {loaded ? displayMenu() : <div>loading...</div>}
         </>
     )
 }
