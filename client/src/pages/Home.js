@@ -91,92 +91,96 @@ export const Home = () => {
         console.log("filteredDogs")
         console.log(filteredDogs)
 
-        return (
-            <div className="container">
-                <div className="calendar-pack-container">
-                    {filteredDogs.map((dog) => (
-                    <div className="calendar-dog-container" key={dog._id}>
-                        <h2>{dog.name}'s Menu</h2>
-                        {dog.dates.map((date,index) => (
-                        <>
-                            {defrost && index === 1 && <div className="calendar-edit-container red expired"> DEFROST IS NEEDED!</div>}
-                            <div className="calendar-edit-container" key={date._id}>
-                                <h3>{new Date(date.date).toLocaleDateString() === today ? "Todays Meal" : "Tomorrows Meal"}</h3>
-                                <div className="date-menu-container">
-                                    <select
-                                        name={`foodId1-${dog._id}-${date._id}`}
-                                        value={date.menuItems.foodId1}
-                                        readOnly
-                                        disabled
-                                        style={{ color: 'black', background: 'white', cursor: 'not-allowed' }}
-                                    >
-                                        <option value={userID} disabled>
-                                        - Choose your menu item
-                                        </option>
-                                        {foods.map((food) => (
-                                        <option key={food._id} value={food._id}>
-                                            {food.name}
-                                        </option>
-                                        ))}
-                                    </select>
-                                    <input
-                                        name={`weightId1-${dog._id}-${date._id}`}
-                                        className="menu-item-weight"
-                                        type="number"
-                                        placeholder="weight(g)"
-                                        value={date.menuItems.weight1 > 0 ? date.menuItems.weight1 : 0}
-                                        readOnly
-                                    />
-                                    <p>(g)</p>
+        if(calendar.length > 0) {
+            return (
+                <div className="container">
+                    <div className="calendar-pack-container">
+                        {filteredDogs.map((dog) => (
+                        <div className="calendar-dog-container" key={dog._id}>
+                            <h2>{dog.name}'s Menu</h2>
+                            {dog.dates.map((date,index) => (
+                            <>
+                                {defrost && index === 1 && <div className="calendar-edit-container red expired"> DEFROST IS NEEDED!</div>}
+                                <div className="calendar-edit-container" key={date._id}>
+                                    <h3>{new Date(date.date).toLocaleDateString() === today ? "Todays Meal" : "Tomorrows Meal"}</h3>
+                                    <div className="date-menu-container">
+                                        <select
+                                            name={`foodId1-${dog._id}-${date._id}`}
+                                            value={date.menuItems.foodId1}
+                                            readOnly
+                                            disabled
+                                            style={{ color: 'black', background: 'white', cursor: 'not-allowed' }}
+                                        >
+                                            <option value={userID} disabled>
+                                            - Choose your menu item
+                                            </option>
+                                            {foods.map((food) => (
+                                            <option key={food._id} value={food._id}>
+                                                {food.name}
+                                            </option>
+                                            ))}
+                                        </select>
+                                        <input
+                                            name={`weightId1-${dog._id}-${date._id}`}
+                                            className="menu-item-weight"
+                                            type="number"
+                                            placeholder="weight(g)"
+                                            value={date.menuItems.weight1 > 0 ? date.menuItems.weight1 : 0}
+                                            readOnly
+                                        />
+                                        <p>(g)</p>
+                                    </div>
+                                    <div className="date-menu-container">
+                                        <select
+                                            name={`foodId2-${dog._id}-${date._id}`}
+                                            value={date.menuItems.foodId2}
+                                            readOnly
+                                            disabled
+                                            style={{ color: 'black', background: 'white', cursor: 'not-allowed' }}
+                                        >
+                                            <option value={userID} disabled>
+                                            - Choose your menu item
+                                            </option>
+                                            {foods.map((food) => (
+                                            <option key={food._id} value={food._id}>
+                                                {food.name}
+                                            </option>
+                                            ))}
+                                        </select>
+                                        <input
+                                            name={`weightId2-${dog._id}-${date._id}`}
+                                            className="menu-item-weight"
+                                            type="number"
+                                            placeholder="weight(g)"
+                                            value={date.menuItems.weight2 > 0 ? date.menuItems.weight2 : 0}
+                                            readOnly
+                                        />
+                                        <p>(g)</p>
+                                    </div>                     
                                 </div>
-                                <div className="date-menu-container">
-                                    <select
-                                        name={`foodId2-${dog._id}-${date._id}`}
-                                        value={date.menuItems.foodId2}
-                                        readOnly
-                                        disabled
-                                        style={{ color: 'black', background: 'white', cursor: 'not-allowed' }}
-                                    >
-                                        <option value={userID} disabled>
-                                        - Choose your menu item
-                                        </option>
-                                        {foods.map((food) => (
-                                        <option key={food._id} value={food._id}>
-                                            {food.name}
-                                        </option>
-                                        ))}
-                                    </select>
-                                    <input
-                                        name={`weightId2-${dog._id}-${date._id}`}
-                                        className="menu-item-weight"
-                                        type="number"
-                                        placeholder="weight(g)"
-                                        value={date.menuItems.weight2 > 0 ? date.menuItems.weight2 : 0}
-                                        readOnly
-                                    />
-                                    <p>(g)</p>
-                                </div>                     
-                            </div>
-                        </>
+                            </>
+                            ))}
+                        </div>
                         ))}
                     </div>
-                    ))}
+                    <Link
+                        to={`Calendar/Edit/${calendar._id}`}
+                        
+                    >
+                        <div className="form-button" title="View Calendar" >
+                            View Full Calendar
+                        </div>
+                    </Link>
                 </div>
-                <Link
-                    to={`Calendar/Edit/${calendar._id}`}
-                    
-                >
-                    <div className="form-button" title="View Calendar" >
-                        View Full Calendar
-                    </div>
-                </Link>
-            </div>
-        )
+            )
+        } else {
+            return ( <div>Calendar data is empty</div> )
+        }
     }
 
     return (
         <>
-        {user && loaded ? (calendar && calendar.length > 0 ? ( displayMenu() ) : ( <div>Calendar data is empty</div> ) ) : !user && loaded ? ( <div>Click Login to begin</div> ) : ( <div>Loading...</div> )}
+        {!loaded ? (<div>Loading...</div>) : (loaded && user ? displayMenu()  : (<div>Click Login to begin</div>) )}
         </>
     )
 }
