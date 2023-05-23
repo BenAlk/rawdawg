@@ -173,8 +173,6 @@ export const Home = () => {
                     </Link>
                 </div>
                 )
-            } else {
-                return <div>you have no data</div>
             }
     }
 
