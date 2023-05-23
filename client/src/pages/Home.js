@@ -72,7 +72,7 @@ export const Home = () => {
         console.log("filteredDogs")
         console.log(filteredDogs)
         
-        if(calendar.dogs.length > 0){
+        if(calendar.length > 0){
         return (
             <div className="container">
                 <div className="calendar-pack-container">
