@@ -74,7 +74,8 @@ export const Home = () => {
         });
         console.log("filteredDogs")
         console.log(filteredDogs)
-
+        
+        if(calendar.dogs.length > 0){
         return (
             <div className="container">
                 <div className="calendar-pack-container">
@@ -156,12 +157,15 @@ export const Home = () => {
                 </Link>
             </div>
             )
+        } else {
+            <div>No Calendar Data To Display!</div>
+        }
         }
     }
 
     return (
         <>
-            {!userID ? <div> loading ...</div> : userID && loaded ? displayMenu() : <div>Click Login to begin.</div>}
+            {!userID ? <div> Click Login to begin.</div> : userID && !loaded ?  <div>loading...</div> : displayMenu() }
         </>
     )
 }
