@@ -13,6 +13,8 @@ export const Home = () => {
     const [defrost, setDefrost] = useState(false)
     const [cookies ,] = useCookies(["access_token"])
     
+    useGetUserID()
+
     useEffect(() => {
         const fetchCalendar = async () => {
             try {
@@ -161,7 +163,7 @@ export const Home = () => {
 
     return (
         <>
-    {loaded ? displayMenu() : <div>loading...</div>}
+    {!loaded ? <div>loading...</div> : !userID ? <div>Click login to begin.</div> : displayMenu()}
         </>
     )
 }
