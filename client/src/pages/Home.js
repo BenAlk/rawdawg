@@ -180,7 +180,7 @@ export const Home = () => {
 
     return (
         <>
-    {user && loaded ? displayMenu() : !user && loaded ? <div>Click Login to begin</div> : <div>loading...</div>}
+        {user && loaded ? (calendar.length > 0 ? ( displayMenu() ) : ( <div>Calendar data is empty</div> ) ) : !user && loaded ? ( <div>Click Login to begin</div> ) : ( <div>Loading...</div> )}
         </>
     )
 }
