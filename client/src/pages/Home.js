@@ -13,19 +13,19 @@ export const Home = () => {
     const [defrost, setDefrost] = useState(false)
     const [cookies ,] = useCookies(["access_token"])
 
-    console.log("USERID" + userID)
-
     useEffect(() => {
         const fetchCalendar = async () => {
             try {
-                const [savedCalendar, foodList] = await Promise.all([
-                axios.get(`https://rawdawg.onrender.com/calendar/active-calendar/${userID}`, {  headers: {authorization: cookies.access_token }}),
-                axios.get(`https://rawdawg.onrender.com/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
+                if (userID){
+                    const [savedCalendar, foodList] = await Promise.all([
+                    axios.get(`https://rawdawg.onrender.com/calendar/active-calendar/${userID}`, {  headers: {authorization: cookies.access_token }}),
+                    axios.get(`https://rawdawg.onrender.com/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
 
-            ])
-                if(savedCalendar.data.completedCalendar) {
-                setCalendar(savedCalendar.data.completedCalendar)
-                setFoods(foodList.data.food)
+                ])
+                    if(savedCalendar.data.completedCalendar) {
+                        setCalendar(savedCalendar.data.completedCalendar)
+                        setFoods(foodList.data.food)
+                    }
                 }
                 setLoaded(true)
             } catch (err) {
