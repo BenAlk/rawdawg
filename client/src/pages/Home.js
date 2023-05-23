@@ -32,22 +32,25 @@ export const Home = () => {
     useEffect(() => {
         const fetchCalendar = async () => {
             try {
+                if(user){
                 const [savedCalendar, foodList] = await Promise.all([
                 axios.get(`https://rawdawg.onrender.com/calendar/active-calendar/${userID}`, {  headers: {authorization: cookies.access_token }}),
                 axios.get(`https://rawdawg.onrender.com/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
-
+                
             ])
+            
                 if(savedCalendar.data.completedCalendar) {
                 setCalendar(savedCalendar.data.completedCalendar)
                 setFoods(foodList.data.food)
                 }
+            }
                 setLoaded(true)
             } catch (err) {
                 console.log(err)
             }
         }
         fetchCalendar()
-    }, [userID, cookies.access_token])
+    }, [user, userID, cookies.access_token])
 
     useEffect(() => {
         console.log(calendar.length)
