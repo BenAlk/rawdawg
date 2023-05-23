@@ -12,8 +12,6 @@ export const Home = () => {
     const [loaded, setLoaded] = useState(false)
     const [defrost, setDefrost] = useState(false)
     const [cookies ,] = useCookies(["access_token"])
-    
-    useGetUserID()
 
     useEffect(() => {
         const fetchCalendar = async () => {
