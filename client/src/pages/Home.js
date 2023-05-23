@@ -91,7 +91,7 @@ export const Home = () => {
         console.log("filteredDogs")
         console.log(filteredDogs)
 
-        if(calendar.length > 0) {
+        if(calendar.dogs) {
             return (
                 <div className="container">
                     <div className="calendar-pack-container">
