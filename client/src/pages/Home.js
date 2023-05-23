@@ -19,8 +19,8 @@ export const Home = () => {
         const fetchCalendar = async () => {
             try {
                 const [savedCalendar, foodList] = await Promise.all([
-                axios.get(`http://localhost:3001/calendar/active-calendar/${userID}`, {  headers: {authorization: cookies.access_token }}),
-                axios.get(`http://localhost:3001/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
+                axios.get(`https://rawdawg.onrender.com/active-calendar/${userID}`, {  headers: {authorization: cookies.access_token }}),
+                axios.get(`https://rawdawg.onrender.com/Food/${userID}`, {  headers: {authorization: cookies.access_token }})
 
             ])
                 if(savedCalendar.data.completedCalendar) {
