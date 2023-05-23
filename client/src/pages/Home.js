@@ -56,9 +56,6 @@ export const Home = () => {
     }, [calendar])
 
     const displayMenu = () => {
-        if(!calendar.dogs) {
-            return <div>you have no data</div>
-        } else {
         const today = new Date().toLocaleDateString()
         console.log(today)
         const tomorrowDateString = new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toLocaleDateString();
@@ -159,7 +156,6 @@ export const Home = () => {
             )
         } else {
             <div>No Calendar Data To Display!</div>
-        }
         }
     }
 
