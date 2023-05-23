@@ -158,7 +158,7 @@ export const Home = () => {
 
     return (
         <>
-            {!userID ? <div> Click Login to begin.</div> : userID && !loaded ?  <div>loading...</div> : displayMenu() }
+            {!userID ? <div> Click Login to begin.</div> : userID && loaded ?  displayMenu() : <div>loading...</div> }
         </>
     )
 }
